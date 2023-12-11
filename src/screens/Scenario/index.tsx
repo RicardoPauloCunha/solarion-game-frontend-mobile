@@ -2,18 +2,18 @@ import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
 import { View } from "react-native"
 import CH1TableImg from '../../assets/images/ch1-table.png'
+import AnimatedImage, { ImageAnimationEnum } from "../../components/Animations/AnimatedImage"
+import AnimatedSection, { TextAnimationEnum } from "../../components/Animations/AnimatedSection"
 import DecisionButton from "../../components/Buttons/DecisionButton"
 import NextIcon from "../../components/Icons/NextIcon"
-import { ScenarioImage } from "../../components/ScenarioImage/styles"
 import ScreenContainer from "../../components/ScreenContainer"
-import Section from "../../components/Section"
 import Paragraph from "../../components/Typographies/Paragraph"
 import { DecisionViewModel } from "../../hooks/api/score"
 import { getScenarioStorage, setScenarioStorage } from "../../hooks/storage/scenario"
 import { DecisionTypeEnum } from "../../types/enums/decisionType"
 import { ScenarioTypeEnum, getNextScenarioType, getScenarioTypeEnumValue, getScenarioTypeImage, listDecisionByScenario } from "../../types/enums/scenarioType"
 import { delay } from "../../utils/timer"
-import { ImageAnimationEnum, SectionContent, TextAnimationEnum } from "./styles"
+import { SectionContent } from "./styles"
 
 const Scenario = () => {
     const navigation = useNavigation()
@@ -74,6 +74,7 @@ const Scenario = () => {
 
         await delay(500)
         setTextAnimation(TextAnimationEnum.In)
+        setImageAnimation(ImageAnimationEnum.None)
 
         setText(getScenarioTypeEnumValue(scenarioType))
         setDecisions(listDecisionByScenario(scenarioType))
@@ -121,27 +122,16 @@ const Scenario = () => {
         handleNextScene(decisionType)
     }
 
-    const handleImageAnimationEnd = () => {
-        if (imageAnimation === ImageAnimationEnum.Out)
-            return
-
-        setImageAnimation(ImageAnimationEnum.None)
-    }
-
-    const handleTextAnimationEnd = () => {
-        if (textAnimation === TextAnimationEnum.Out)
-            return
-
-        setTextAnimation(TextAnimationEnum.None)
-    }
-
     return (
         <ScreenContainer>
-            <ScenarioImage
+            <AnimatedImage
+                imageAnimation={imageAnimation}
                 source={img}
             />
 
-            {text && <Section>
+            {text && <AnimatedSection
+                textAnimation={textAnimation}
+            >
                 {hasDecisions
                     ? <>
                         <Paragraph
@@ -170,7 +160,7 @@ const Scenario = () => {
                         <NextIcon />
                     </SectionContent>
                 }
-            </Section>}
+            </AnimatedSection>}
         </ScreenContainer>
     )
 }

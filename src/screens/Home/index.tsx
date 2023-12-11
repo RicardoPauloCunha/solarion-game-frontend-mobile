@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
 import CH1TableImg from '../../assets/images/ch1-table.png'
+import AnimatedImage, { ImageAnimationEnum } from "../../components/Animations/AnimatedImage"
 import Button from "../../components/Buttons/Button"
 import VerticalGroup from "../../components/Groups/VerticalGroup"
 import Modal from "../../components/Modals/Modal"
-import { ScenarioImage } from "../../components/ScenarioImage/styles"
 import ScreenContainer from "../../components/ScreenContainer"
 import Section from "../../components/Section"
 import Toggle from "../../components/Toggle"
@@ -76,7 +76,8 @@ const Home = () => {
 
     return (
         <ScreenContainer>
-            <ScenarioImage
+            <AnimatedImage
+                imageAnimation={ImageAnimationEnum.None}
                 source={CH1TableImg}
             />
 

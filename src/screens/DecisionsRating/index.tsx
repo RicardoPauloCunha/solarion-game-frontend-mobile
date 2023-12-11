@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
+import AnimatedRatingResult from "../../components/Animations/AnimatedRatingResult"
+import AnimatedSection, { TextAnimationEnum } from "../../components/Animations/AnimatedSection"
 import Button from "../../components/Buttons/Button"
 import WarningCard, { WarningData } from "../../components/Cards/WarningCard"
 import VerticalGroup from "../../components/Groups/VerticalGroup"
 import SuccessModal from "../../components/Modals/SuccessModal"
-import RatingResult from "../../components/RatingResult"
 import ScreenContainer from "../../components/ScreenContainer"
-import Section from "../../components/Section"
 import Paragraph from "../../components/Typographies/Paragraph"
 import { getAxiosError } from "../../config/axios/error"
 import { createScoreApi } from "../../hooks/api/score"
@@ -29,6 +29,7 @@ const DecisionsRating = () => {
     const [scenario, setScenario] = useState<ScenarioData | undefined>(undefined)
     const [ratingType, setRatingType] = useState(RatingTypeEnum.None)
     const [ratingTypeValue, setRatingTypeValue] = useState('FFF')
+    const [textAnimation, setTextAnimation] = useState(TextAnimationEnum.None)
 
     useEffect(() => {
         getLastScenario()
@@ -45,6 +46,10 @@ const DecisionsRating = () => {
         setScenario(last)
         setRatingType(rate)
         setRatingTypeValue(getRatingTypeEnumValue(rate))
+
+        setTimeout(() => {
+            setTextAnimation(TextAnimationEnum.In)
+        }, 2000);
     }
 
     const saveScore = async () => {
@@ -79,12 +84,15 @@ const DecisionsRating = () => {
     return (
         <ScreenContainer>
             {ratingType !== RatingTypeEnum.None && <>
-                <RatingResult
+                <AnimatedRatingResult
                     size="large"
                     ratingType={ratingType}
+                    animate={true}
                 />
 
-                <Section>
+                <AnimatedSection
+                    textAnimation={textAnimation}
+                >
                     <Paragraph
                         text={`Você terminou o Cenário com nota '${ratingTypeValue}'.`}
                     />
@@ -106,7 +114,7 @@ const DecisionsRating = () => {
                             onClick={handleBackHome}
                         />
                     </VerticalGroup>
-                </Section>
+                </AnimatedSection>
             </>}
 
             <SuccessModal
