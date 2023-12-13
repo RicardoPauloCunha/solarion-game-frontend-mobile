@@ -12,7 +12,7 @@ import Input from "../../components/Inputs/Input"
 import Select from "../../components/Inputs/Select"
 import LoadingText from "../../components/Loadings/LoadingText"
 import ScreenContainer from "../../components/ScreenContainer"
-import Section from "../../components/Section"
+import Section from "../../components/Sections/Section"
 import Toggle from "../../components/Toggle"
 import Subtitle from "../../components/Typographies/Subtitle"
 import Title from "../../components/Typographies/Title"
@@ -124,9 +124,10 @@ const Dashboard = () => {
     }
 
     const handleCleanFilter = () => {
-        setIndicatorsFilter({})
-
+        setHasDateInput(false)
         formRef.current?.reset()
+
+        getIndicatorsData({})
     }
 
     const handleSelectLastMonths = (value: string) => {

@@ -1,3 +1,4 @@
+import { useIsFocused } from "@react-navigation/native"
 import { useEffect, useState } from "react"
 import { Article } from "../../components/Article/styles"
 import TextButton from "../../components/Buttons/TextButton"
@@ -6,7 +7,7 @@ import WarningCard, { WarningData } from "../../components/Cards/WarningCard"
 import LoadingText from "../../components/Loadings/LoadingText"
 import DeleteModal from "../../components/Modals/DeleteModal"
 import ScreenContainer from "../../components/ScreenContainer"
-import Section from "../../components/Section"
+import Section from "../../components/Sections/Section"
 import Title from "../../components/Typographies/Title"
 import { getAxiosError } from "../../config/axios/error"
 import { DecisionViewModel, ScoreViewModel, createScoreApi, deleteScoreApi, listMyScoresApi } from "../../hooks/api/score"
@@ -25,6 +26,8 @@ enum LoadingEnum {
 }
 
 const MyScores = () => {
+    const isFocused = useIsFocused()
+
     const [isLoading, setIsLoading] = useState(LoadingEnum.None)
     const [showModal, setShowModal] = useState(false)
     const [warning, setWarning] = useState<WarningData | undefined>(undefined)
@@ -35,8 +38,15 @@ const MyScores = () => {
 
     useEffect(() => {
         getScoresData()
-        getLastScoreDate()
     }, [])
+
+    useEffect(() => {
+        if (isFocused) {
+            setLastScore(undefined)
+
+            getLastScoreDate()
+        }
+    }, [isFocused])
 
     const getLastScoreDate = async () => {
         let last = await getScenarioStorage()

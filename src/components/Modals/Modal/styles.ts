@@ -19,7 +19,7 @@ export const Scroll = styled.ScrollView`
 
 export const Content = styled.View`
     padding: 16px;
-    border: 4px solid ${({ theme }) => theme.color.lightWine};
+    border: 4px solid ${({ theme }) => theme.color.wine};
     border-radius: 8px;
     background-color: ${({ theme }) => theme.color.lightOrange};
     flex-direction: column;

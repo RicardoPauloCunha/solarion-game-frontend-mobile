@@ -9,7 +9,7 @@ import { Form } from "../../components/Form/styles"
 import Input from "../../components/Inputs/Input"
 import SuccessModal from "../../components/Modals/SuccessModal"
 import ScreenContainer from "../../components/ScreenContainer"
-import Section from "../../components/Section"
+import Section from "../../components/Sections/Section"
 import Paragraph from "../../components/Typographies/Paragraph"
 import Title from "../../components/Typographies/Title"
 import { getAxiosError } from "../../config/axios/error"
@@ -110,6 +110,7 @@ const RecoverPassword = () => {
         let mail = email
 
         setEmail('')
+        setWarning(undefined)
 
         setTimeout(() => {
             formRef.current?.setFieldValue('email', mail)

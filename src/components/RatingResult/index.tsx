@@ -1,23 +1,23 @@
 import { useEffect, useRef } from 'react'
 import { Animated } from 'react-native'
-import CatAImg from '../../../assets/images/cat-a.png'
-import CatBImg from '../../../assets/images/cat-b.png'
-import CatCImg from '../../../assets/images/cat-c.png'
-import CatDImg from '../../../assets/images/cat-d.png'
-import { RatingTypeEnum, getRatingTypeEnumValue } from "../../../types/enums/ratingType"
+import CatAImg from '../../assets/images/cat-a.png'
+import CatBImg from '../../assets/images/cat-b.png'
+import CatCImg from '../../assets/images/cat-c.png'
+import CatDImg from '../../assets/images/cat-d.png'
+import { RatingTypeEnum, getRatingTypeEnumValue } from "../../types/enums/ratingType"
 import { Container, Image, RatingSize, Text, TextContainer } from "./styles"
 
-interface AnimatedRatingResultProps {
+interface RatingResultProps {
     size: RatingSize
     ratingType: RatingTypeEnum,
     animate?: boolean
 }
 
-const AnimatedRatingResult = ({
+const RatingResult = ({
     size,
     ratingType,
     animate = false
-}: AnimatedRatingResultProps) => {
+}: RatingResultProps) => {
     const ratingOpacityAnim = useRef(new Animated.Value(animate ? 0 : 1)).current
     const imageOpacityAnim = useRef(new Animated.Value(animate ? 0 : 1)).current
 
@@ -89,4 +89,4 @@ const AnimatedRatingResult = ({
     )
 }
 
-export default AnimatedRatingResult
+export default RatingResult

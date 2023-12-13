@@ -2,11 +2,11 @@ import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
 import { View } from "react-native"
 import CH1TableImg from '../../assets/images/ch1-table.png'
-import AnimatedImage, { ImageAnimationEnum } from "../../components/Animations/AnimatedImage"
-import AnimatedSection, { TextAnimationEnum } from "../../components/Animations/AnimatedSection"
+import AnimatedImage, { ImageAnimationEnum } from "../../components/AnimatedImage"
 import DecisionButton from "../../components/Buttons/DecisionButton"
 import NextIcon from "../../components/Icons/NextIcon"
 import ScreenContainer from "../../components/ScreenContainer"
+import AnimatedSection, { TextAnimationEnum } from "../../components/Sections/AnimatedSection"
 import Paragraph from "../../components/Typographies/Paragraph"
 import { DecisionViewModel } from "../../hooks/api/score"
 import { getScenarioStorage, setScenarioStorage } from "../../hooks/storage/scenario"
@@ -47,8 +47,8 @@ const Scenario = () => {
             navigation.navigate('DecisionsRating')
         }
         if (last) {
-            defineScene(last.scenarioType)
             setSelectedDecisionTypes(last.decisions)
+            defineScene(last.scenarioType)
         }
         else {
             handleInitScene()

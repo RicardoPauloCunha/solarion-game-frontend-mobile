@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "react-native"
 import { ScoreViewModel } from "../../../hooks/api/score"
-import AnimatedRatingResult from "../../Animations/AnimatedRatingResult"
 import Button from "../../Buttons/Button"
+import RatingResult from "../../RatingResult"
 import Toggle from "../../Toggle"
 import Attribute from "../../Typographies/Attribute"
 import BulletList from "../../Typographies/BulletList"
@@ -31,7 +31,7 @@ const ScoreCard = ({
                 text={data.userName}
             />}
 
-            <AnimatedRatingResult
+            <RatingResult
                 size="small"
                 ratingType={data.ratingType}
             />

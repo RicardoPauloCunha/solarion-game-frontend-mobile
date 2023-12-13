@@ -1,6 +1,6 @@
 import { Animated, Dimensions } from 'react-native'
 import styled, { css } from "styled-components/native"
-import { RatingTypeEnum } from "../../../types/enums/ratingType"
+import { RatingTypeEnum } from "../../types/enums/ratingType"
 
 export type RatingSize = 'small' | 'large'
 const width = (Dimensions.get('window').width * 0.7) - 16
@@ -13,11 +13,11 @@ interface ContainerProps {
 export const Container = styled.View<ContainerProps>`
     width: 100%;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 16px;
 
     ${({ size }) => size === 'small' ? css`
-        margin: 16px 0;
+        margin: 8px 0;
     ` : css`
         flex-direction: column;
         align-items: center;
@@ -70,7 +70,7 @@ export const Text = styled.Text<ContainerProps>`
 export const Image = styled(Animated.Image) <ContainerProps>`
     border-radius: 8px;
     border-width: 4px;
-    border-color: ${({ theme }) => theme.color.lightWine};
+    border-color: ${({ theme }) => theme.color.wine};
 
     ${({ size }) => size === 'small' ? css`
         width: 112px;

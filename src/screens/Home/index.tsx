@@ -1,12 +1,12 @@
-import { useNavigation } from "@react-navigation/native"
+import { useIsFocused, useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
 import CH1TableImg from '../../assets/images/ch1-table.png'
-import AnimatedImage, { ImageAnimationEnum } from "../../components/Animations/AnimatedImage"
+import AnimatedImage, { ImageAnimationEnum } from "../../components/AnimatedImage"
 import Button from "../../components/Buttons/Button"
 import VerticalGroup from "../../components/Groups/VerticalGroup"
 import Modal from "../../components/Modals/Modal"
 import ScreenContainer from "../../components/ScreenContainer"
-import Section from "../../components/Section"
+import Section from "../../components/Sections/Section"
 import Toggle from "../../components/Toggle"
 import Attribute from "../../components/Typographies/Attribute"
 import BulletList from "../../components/Typographies/BulletList"
@@ -20,6 +20,7 @@ import { formatDateToView } from "../../utils/date"
 
 const Home = () => {
     const navigation = useNavigation()
+    const isFocused = useIsFocused()
 
     const [showModal, setShowModal] = useState(false)
     const [scenario, setScenario] = useState<ScenarioData | undefined>(undefined)
@@ -28,8 +29,11 @@ const Home = () => {
     const [decisionTypesValue, setDecisionTypesValue] = useState<string[]>([])
 
     useEffect(() => {
-        getLastScenario()
-    }, [])
+        if (isFocused) {
+            resetStates()
+            getLastScenario()
+        }
+    }, [isFocused])
 
     const getLastScenario = async () => {
         let last = await getScenarioStorage()
@@ -45,6 +49,14 @@ const Home = () => {
         setHeroTypeValue(hero)
         setCreationDate(date)
         setDecisionTypesValue(values)
+    }
+
+    const resetStates = () => {
+        setShowModal(false)
+        setScenario(undefined)
+        setHeroTypeValue('')
+        setCreationDate('')
+        setDecisionTypesValue([])
     }
 
     const handlePlay = () => {
@@ -128,7 +140,7 @@ const Home = () => {
                                 value={creationDate}
                             />
 
-                            <Toggle
+                            {decisionTypesValue.length !== 0 && <Toggle
                                 text="Decisões:"
                                 preview={<BulletList
                                     items={[decisionTypesValue[0] + '..']}
@@ -137,7 +149,7 @@ const Home = () => {
                                 <BulletList
                                     items={decisionTypesValue}
                                 />
-                            </Toggle>
+                            </Toggle>}
                         </VerticalGroup>
 
                         <VerticalGroup>

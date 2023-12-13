@@ -13,7 +13,7 @@ import Input from "../../components/Inputs/Input"
 import Select from "../../components/Inputs/Select"
 import LoadingText from "../../components/Loadings/LoadingText"
 import ScreenContainer from "../../components/ScreenContainer"
-import Section from "../../components/Section"
+import Section from "../../components/Sections/Section"
 import Toggle from "../../components/Toggle"
 import Title from "../../components/Typographies/Title"
 import { getSchemaError } from "../../config/validator/methods"
@@ -124,9 +124,10 @@ const Scores = () => {
     }
 
     const handleCleanFilter = () => {
-        setScoreFilter({})
-
+        setHasDateInput(false)
         formRef.current?.reset()
+
+        getScoresData({}, true)
     }
 
     const handleSelectLastMonths = (value: string) => {

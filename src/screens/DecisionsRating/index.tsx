@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
-import AnimatedRatingResult from "../../components/Animations/AnimatedRatingResult"
-import AnimatedSection, { TextAnimationEnum } from "../../components/Animations/AnimatedSection"
 import Button from "../../components/Buttons/Button"
 import WarningCard, { WarningData } from "../../components/Cards/WarningCard"
 import VerticalGroup from "../../components/Groups/VerticalGroup"
 import SuccessModal from "../../components/Modals/SuccessModal"
+import RatingResult from "../../components/RatingResult"
 import ScreenContainer from "../../components/ScreenContainer"
+import AnimatedSection, { TextAnimationEnum } from "../../components/Sections/AnimatedSection"
 import Paragraph from "../../components/Typographies/Paragraph"
 import { getAxiosError } from "../../config/axios/error"
 import { createScoreApi } from "../../hooks/api/score"
@@ -84,7 +84,7 @@ const DecisionsRating = () => {
     return (
         <ScreenContainer>
             {ratingType !== RatingTypeEnum.None && <>
-                <AnimatedRatingResult
+                <RatingResult
                     size="large"
                     ratingType={ratingType}
                     animate={true}
