@@ -55,7 +55,7 @@ yarn start
 
 <div align="center">
 
-![main page files](src/assets/prints/main-page.jpg)
+![main page files](src/assets/prints/main-page.jpg =600x1066)
 
 </div>
 
