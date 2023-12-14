@@ -53,7 +53,7 @@ yarn start
 
 6. Abra o aplicativo no celular ou emulador através do **EXPO** para acessar as funcionalidades.
 
-<img src="src/assets/prints/main-page.jpg" width="600">
+<img src="src/assets/prints/main-page.jpg" width="300">
 
 7. Por fim, inicie um 'Novo jogo' e finalize o cenário para obter uma pontuação e ???.
 
